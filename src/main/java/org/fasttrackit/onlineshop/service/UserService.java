@@ -2,6 +2,7 @@ package org.fasttrackit.onlineshop.service;
 
 import org.fasttrackit.onlineshop.domain.User;
 import org.fasttrackit.onlineshop.persistance.UserRepository;
+import org.fasttrackit.onlineshop.transfer.SaveUserRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser() {
+    public User createUser(SaveUserRequest request) {
 
         LOGGER.info("Creating User: {}" , request);
 
@@ -34,4 +35,10 @@ public class UserService {
  return userRepository.save(user);
 
     }
+
+
+
+
+
+
 }

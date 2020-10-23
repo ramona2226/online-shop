@@ -2,7 +2,7 @@ package org.fasttrackit.onlineshop.transfer;
 
 import javax.validation.constraints.NotNull;
 
-public class CreateUserRequest {
+public class SaveUserRequest {
 
 
     @NotNull
