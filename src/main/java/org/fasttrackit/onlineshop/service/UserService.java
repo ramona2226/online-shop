@@ -39,12 +39,12 @@ public class UserService {
 
     }
 
-      public User getUser(long id) {
+    public User getUser(long id) {
 
-          LOGGER.info("Retrieving user{}", id);
+        LOGGER.info("Retrieving user{}", id);
 
 
-          //optional example
+        //optional example
 ////          Optional<User> userOptional = userRepository.findById(id);
 //          if(userOptional.isPresent()) {
 //              return userOptional.get();
@@ -54,12 +54,12 @@ public class UserService {
 
 
 
-      //    }
+        //    }
 
-          return userRepository.findById(id)
-                  //Lambda expression
-                  .orElseThrow(()-> new ResourceNotFoundException(("User " + id + "does not exist")));
-      }
+        return userRepository.findById(id)
+                //Lambda expression
+                .orElseThrow(()-> new ResourceNotFoundException(("User " + id + "does not exist")));
+    }
 
 
 
