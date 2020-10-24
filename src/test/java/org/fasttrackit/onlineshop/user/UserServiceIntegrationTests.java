@@ -79,9 +79,27 @@ assertThat("Unexpected exception type.",exception instanceof TransactionSystemEx
         SaveUserRequest request= new SaveUserRequest();
         request.setFirstName(createdUser.getFirstName() + "Updated");
         request.setLastName(createdUser.getLastName() + "Updated");
-        userService.updateUser(createdUser.getId(), request);
 
-        User updatedUser = userService.updateUser(createdUser.getFirstName(), request);
+
+        User updatedUser = userService.updateUser(createdUser.getId(), request);
+
+        assertThat(updatedUser, notNullValue());
+        assertThat(updatedUser.getId(), is(createdUser.getId()));
+        assertThat(updatedUser.getFirstName(), is(request.getFirstName()));
+        assertThat(updatedUser.getLastName(), is(request.getLastName()));
+
+
+
+    }
+
+    @Test
+    public void deleteUser_whenExistingUser_thenTheUserIsDeleted(){
+
+        User createdUser = createUser();
+        userService.deleteUser(createdUser.getId());
+
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(createdUser.getId()));
+
 
 
 

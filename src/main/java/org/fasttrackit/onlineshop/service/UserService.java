@@ -75,7 +75,7 @@ public User updateUser(long id, SaveUserRequest request){
     return userRepository.save(existingUser);
 }
 
-public void deteleUser(long id) {
+public void deleteUser(long id) {
         LOGGER.info("Deleting user {} ", id);
         userRepository.deleteById(id);
 }
