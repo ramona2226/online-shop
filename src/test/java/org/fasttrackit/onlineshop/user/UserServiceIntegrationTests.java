@@ -73,6 +73,20 @@ assertThat("Unexpected exception type.",exception instanceof TransactionSystemEx
 
 
     }
+    @Test
+    public void updateUser_whenExistingUser_ThenReturnUpdatedUser(){
+        User createdUser = createUser();
+        SaveUserRequest request= new SaveUserRequest();
+        request.setFirstName(createdUser.getFirstName() + "Updated");
+        request.setLastName(createdUser.getLastName() + "Updated");
+        userService.updateUser(createdUser.getId(), request);
+
+        User updatedUser = userService.updateUser(createdUser.getFirstName(), request);
+
+
+
+    }
+
 
     private User createUser() {
         SaveUserRequest request = new SaveUserRequest();
