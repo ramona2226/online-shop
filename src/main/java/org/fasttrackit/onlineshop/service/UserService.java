@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
+
+//spring bean(object controlled by spring boot)
+//IoC Container(contex of all spring beans)
+
 @Service
 public class UserService {
 
