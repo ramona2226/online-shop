@@ -3,8 +3,12 @@ package org.fasttrackit.onlineshop.web;
 
 import org.fasttrackit.onlineshop.domain.User;
 import org.fasttrackit.onlineshop.service.UserService;
+import org.fasttrackit.onlineshop.transfer.GetUsersRequest;
 import org.fasttrackit.onlineshop.transfer.SaveUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +44,15 @@ public class UserControler {
        // return new ResponseEntity<>(user, HttpStatus.OK);
         //sau
          return  ResponseEntity.ok(user);
+
+
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<User>> getUsers(GetUsersRequest request, Pageable pageable){
+
+        Page<User> users = userService.getUsers(request, (org.springframework.data.domain.Pageable) pageable);
+        return ResponseEntity.ok(users);
     }
 
     @PutMapping("/{id}")
