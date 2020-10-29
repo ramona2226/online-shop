@@ -4,6 +4,7 @@ package org.fasttrackit.onlineshop.user;
 import org.fasttrackit.onlineshop.domain.User;
 import org.fasttrackit.onlineshop.exception.ResourceNotFoundException;
 import org.fasttrackit.onlineshop.service.UserService;
+import org.fasttrackit.onlineshop.steps.UserTestSteps;
 import org.fasttrackit.onlineshop.transfer.user.SaveUserRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,12 +22,15 @@ import static org.hamcrest.Matchers.greaterThan;
 public class UserServiceIntegrationTests {
 
     //field-injection
-    @Autowired
     private UserService userService;
+
+
+    private UserTestSteps userTestSteps = new UserTestSteps();
 
     @Test
 public void createUser_whenValidRequest_thenReturnSaveUser(){
-        createUser();
+
+        userTestSteps.createUser();
     }
 
 
@@ -55,7 +59,7 @@ assertThat("Unexpected exception type.",exception instanceof TransactionSystemEx
     }
     @Test
     public void getUser_whenExistingUser_thenReturnUser() {
-        User createdUser = createUser();
+        User createdUser = userTestSteps.createUser();
         User userResponse = userService.getUser(createdUser.getId());
 
 
@@ -75,7 +79,7 @@ assertThat("Unexpected exception type.",exception instanceof TransactionSystemEx
     }
     @Test
     public void updateUser_whenExistingUser_ThenReturnUpdatedUser(){
-        User createdUser = createUser();
+        User createdUser = userTestSteps.createUser();
         SaveUserRequest request= new SaveUserRequest();
         request.setFirstName(createdUser.getFirstName() + "Updated");
         request.setLastName(createdUser.getLastName() + "Updated");
@@ -95,7 +99,7 @@ assertThat("Unexpected exception type.",exception instanceof TransactionSystemEx
     @Test
     public void deleteUser_whenExistingUser_thenTheUserIsDeleted(){
 
-        User createdUser = createUser();
+        User createdUser = userTestSteps.createUser();
         userService.deleteUser(createdUser.getId());
 
         Assertions.assertThrows(ResourceNotFoundException.class, () -> userService.getUser(createdUser.getId()));
@@ -106,19 +110,5 @@ assertThat("Unexpected exception type.",exception instanceof TransactionSystemEx
     }
 
 
-    private User createUser() {
-        SaveUserRequest request = new SaveUserRequest();
-        request.setFirstName("Test First Name");
-        request.setLastName("Test Last Name");
 
-
-        User user = userService.createUser(request);
-
-        assertThat(user, notNullValue());
-        assertThat(user.getId(), greaterThan(0L));
-        assertThat(user.getFirstName(), is(request.getFirstName()));
-        assertThat(user.getLastName(), is(request.getLastName()));
-
-        return user;
-    }
 }

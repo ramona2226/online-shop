@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 
 
+@SuppressWarnings("ALL")
 public class CartService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CartService.class);
