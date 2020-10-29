@@ -3,10 +3,9 @@ package org.fasttrackit.onlineshop.web;
 
 import org.fasttrackit.onlineshop.domain.User;
 import org.fasttrackit.onlineshop.service.UserService;
-import org.fasttrackit.onlineshop.transfer.GetUsersRequest;
-import org.fasttrackit.onlineshop.transfer.SaveUserRequest;
+import org.fasttrackit.onlineshop.transfer.user.GetUsersRequest;
+import org.fasttrackit.onlineshop.transfer.user.SaveUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
