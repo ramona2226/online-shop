@@ -23,7 +23,8 @@ public class UserService {
 
 
 
-    //Inversion of CControl(IoC)- design pattern
+    //Inversion of Control(IoC)- design pattern
+
      private final UserRepository userRepository ;
 
     //Dependency Injection
@@ -70,7 +71,7 @@ public class UserService {
     public Page<User> getUsers(GetUsersRequest request,Pageable pageable) {
         LOGGER.info("Retriving  users: {}, request");
 
-//        if (request.getPartialFirstName() !=null && request.getPartialLastName() != null) {
+  //    if (request.getPartialFirstName() !=null && request.getPartialLastName() != null) {
 //            return userRepository.findByFirstNameContainsAndLastNameContains(request.getPartialFirstName(), request.getPartialLastName(), pageable);
 //        }  else if (request.getPartialFirstName() != null) {
 //                return userRepository.findByFirstNameContains(request.getPartialFirstName(), pageable);
